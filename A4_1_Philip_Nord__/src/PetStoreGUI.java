@@ -36,7 +36,7 @@ public class PetStoreGUI extends JFrame {
 					PetStoreGUI frame = new PetStoreGUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					e.printStackTrace();	
 				}
 			}
 		});
@@ -100,13 +100,19 @@ public class PetStoreGUI extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if(dog !=null){
-					textField.setText(human.getInfo());
-					
-				}else{
-					
-					textField.setText(human.getName() + " owns no dog");
+				if(human == null) {
+					textField_1.setText("Human and Dog must be set"); // Added null check /Anton
+				} else {
+
+					if(dog !=null){
+						textField.setText(human.getInfo());
+
+					}else{
+
+						textField.setText(human.getName() + " owns no dog");
+					}
 				}
+				
 				
 				
 				
