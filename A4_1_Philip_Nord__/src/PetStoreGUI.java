@@ -100,17 +100,20 @@ public class PetStoreGUI extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if(dog !=null){
-					textField.setText(human.getInfo());
-					
-				}else{
-					
-					textField.setText(human.getName() + " owns no dog");
+				if(human == null) {
+					textField_1.setText("Human and Dog must be set"); // Added null check /Anton
+				} else {
+
+					if(dog !=null){
+						textField.setText(human.getInfo());
+
+					}else{
+
+						textField.setText(human.getName() + " owns no dog");
+					}
+				
 				}
-				
-				
-				
-			}
+			}	
 		});
 		btnNewButton_1.setBounds(156, 159, 111, 27);
 		contentPane.add(btnNewButton_1);
