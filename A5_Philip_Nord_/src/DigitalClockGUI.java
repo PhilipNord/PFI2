@@ -1,4 +1,5 @@
 import java.awt.EventQueue;
+
 import java.awt.Font;
 import java.awt.Panel;
 import java.awt.SystemColor;
@@ -10,6 +11,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class DigitalClockGUI extends JFrame {
 
@@ -18,6 +22,7 @@ public class DigitalClockGUI extends JFrame {
 	private JTextField textField_1;
 	private ClockLogic clockLogic;
 	public JLabel lblClocktime;
+	private JLabel lblAlarn;
 
 	/**
 	 * Launch the application.
@@ -39,6 +44,10 @@ public class DigitalClockGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public DigitalClockGUI() {
+		
+		super("Alarm Clock");
+		ImageIcon img = new ImageIcon();
+			
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 300);
 		contentPane = new JPanel();
@@ -77,10 +86,18 @@ public class DigitalClockGUI extends JFrame {
 		textField_1.setColumns(10);
 
 		JButton btnSetAlarm = new JButton("Set Alarm");
+		btnSetAlarm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnSetAlarm.setFont(new Font("Slim Joe", Font.PLAIN, 10));
 		panel.add(btnSetAlarm);
 
 		JButton btnClearAlarm = new JButton("Clear Alarm");
+		btnClearAlarm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnClearAlarm.setFont(new Font("Slim Joe", Font.PLAIN, 10));
 		panel.add(btnClearAlarm);
 
@@ -99,7 +116,13 @@ public class DigitalClockGUI extends JFrame {
 		lblClocktime = new JLabel("");
 		lblClocktime.setBounds(238, 81, 199, 63);
 		contentPane.add(lblClocktime);
+		
+		lblAlarn = new JLabel("alarn");
+		lblAlarn.setBounds(330, 152, 46, 14);
+		contentPane.add(lblAlarn);
 		clockLogic = new ClockLogic(this);
+		
+		
 	}
 
 	public void setTimeOnLabel(String time) {
@@ -107,9 +130,13 @@ public class DigitalClockGUI extends JFrame {
 		lblClocktime.setText(time);
 
 	}
+	
+	public void setAlarmText(String alarmText){
+		
+		lblAlarn .setText(alarmText);
+	}
 
 	public void alarm(boolean activate) {
 
 	}
-
 }

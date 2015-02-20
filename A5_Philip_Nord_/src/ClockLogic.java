@@ -13,10 +13,12 @@ public class ClockLogic implements ClockInterface {
 		t.run();
 	}
 
-	public void setAlarm(int hours, int minutes) {
+	public void setAlarm(int currHours, int currMinutes) {
 
-		this.alarmHour = alarmHour;
-		this.alarmMinute = alarmMinute;
+		this.alarmHour = currHours;
+		this.alarmMinute = currMinutes;
+		clockGUI.setAlarmText(String.valueOf(alarmHour) + ":" + String.valueOf(alarmMinute));
+		
 
 	}
 
