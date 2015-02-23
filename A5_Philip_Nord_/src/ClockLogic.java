@@ -10,7 +10,7 @@ public class ClockLogic implements ClockInterface {
 		this.clockGUI = clockGUI;
 
 		Thread t = new ClockThread(this);
-		t.run();
+		t.start();
 	}
 
 	public void setAlarm(int currHours, int currMinutes) {
