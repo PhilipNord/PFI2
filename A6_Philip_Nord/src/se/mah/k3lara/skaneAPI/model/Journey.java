@@ -87,6 +87,7 @@ public class Journey {
 	}
 	public String getDepTimeDeviation() {
 		return depTimeDeviation;
+	
 	}
 	public void setDepTimeDeviation(String depTimeDeviation) {
 		this.depTimeDeviation = depTimeDeviation;

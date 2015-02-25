@@ -1,0 +1,8 @@
+XML-frågorna
+1. Mellan Malmö C  och  Lund C
+2. ?cmdaction=next&selPointFr=|`80000|0&selPointTo=0|81216|0&noOf=5
+3. Journeys taggen visar alla möjliga resevägar runt den aktuella tiden. Medan Journey taggarna visar mer specfika infor för den resevägen.
+RouteLinks taggen är en container för taggarna RouteLink. Medan RouteLink beskriver vilken tid resan börjar och anländer, samt vilket fordon och priszoner den åker igenom.
+4. <NoOfChanges></NoOfChanges>
+5. <DepWalkDist> </DepWalkDist> & <ArrWalkDist> </ArrWalkDist>
+
