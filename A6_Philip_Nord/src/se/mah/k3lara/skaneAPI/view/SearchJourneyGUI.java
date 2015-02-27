@@ -30,12 +30,21 @@ import javax.swing.JScrollPane;
 
 public class SearchJourneyGUI extends JFrame {
 
-	private JPanel contentPane;
-	private JTextField searchField;
-	private ArrayList<Station> searchStations;
-	private JTextArea searchResultTextArea;
-	private JTextField searchFieldFrom;
-	private JTextField searchFieldTo;
+	public JPanel contentPane;
+	public JTextField searchField;
+	public ArrayList<Station> searchStations;
+	public JTextArea searchResultTextArea;
+	public JTextField searchFieldFrom;
+	public JTextField searchFieldTo;
+	public JTextArea searchResultJourneyTextArea;
+	
+	SearchJourneyGUI g = this;
+	
+	private Parser p = new Parser();
+	
+	Thread tJ = new JourneysThread (p, this);
+	Thread tS = new StationsThread (p, this);
+
 	
 	/**
 	 * Launch the application.
@@ -83,23 +92,10 @@ public class SearchJourneyGUI extends JFrame {
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				searchStations = new ArrayList<Station>(); // Skapar en
-															// ArrayList där dem
-															// sökta staionerna
-															// ska läggas in i
-				searchStations.addAll(Parser.getStationsFromURL(searchField
-						.getText())); // Den hämtar alla stationerna som
-										// innehåller strängen "Malm" oclägger
-										// den i Arraylisten "searchStations
-				
-				
-				for (Station s : searchStations) {
-					searchResultTextArea.append(s.getStationName() + " number:"
-							+ s.getStationNbr() + "\n");
-					
+				Thread tS = new StationsThread (p, g);
+				tS.start();
 					
 				}
-			}
 		});
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -149,34 +145,16 @@ public class SearchJourneyGUI extends JFrame {
 		scrollPane_1.setBounds(10, 141, 207, 147);
 		searchJourneyPanel.add(scrollPane_1);
 
-		final JTextArea searchResultJourneyTextArea = new JTextArea();
+		searchResultJourneyTextArea = new JTextArea();
 		scrollPane_1.setViewportView(searchResultJourneyTextArea);
 
 		JButton btnSearchJourney = new JButton("S\u00F6k Resor");
 		btnSearchJourney.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				String searchURL = Constants.getURL(searchFieldFrom.getText(),
-						searchFieldTo.getText(), 1);
-
-				Journeys journeys = Parser.getJourneys(searchURL); // Den hämtar alla resemål och  lägger dem i Arraylisten "journeys"
-				for (Journey journey : journeys.getJourneys()) {
-					searchResultJourneyTextArea.setText(journey
-							.getStartStation() + " - ");
-					searchResultJourneyTextArea.append(journey.getEndStation()
-							+ "" + "\n");
-					String time = journey.getDepDateTime().get(
-							Calendar.HOUR_OF_DAY)
-							+ ":"
-							+ journey.getDepDateTime().get(Calendar.MINUTE);
-					searchResultJourneyTextArea.append("Departs " + time
-							+ " that is in " + journey.getTimeToDeparture() 
-							+ " minutes." + "\n" + "And it is " 
-							+ journey.getDepTimeDeviation() + " min late");
+				Thread tJ = new JourneysThread (p, g);
+				tJ.start();
 
 					
-				}
-
 			}
 		});
 		btnSearchJourney.setBounds(10, 108, 110, 23);
