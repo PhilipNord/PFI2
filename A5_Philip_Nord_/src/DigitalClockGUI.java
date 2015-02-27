@@ -31,7 +31,7 @@ public class DigitalClockGUI extends JFrame {
 	private JLabel lblAlarmmsg;
 	private JLabel lblSleepyLink;
 	private JLabel lblLblawakelink;
-	private JLabel lblLblalramicon;
+	private JLabel lblLblalarmicon;
 
 	/**
 	 * Launch the application.
@@ -67,10 +67,12 @@ public class DigitalClockGUI extends JFrame {
 		contentPane.setLayout(null);
 
 		Panel panel = new Panel();
-		panel.setBounds(10, 47, 100, 176);
+		panel.setBounds(10, 17, 135, 213);
 		contentPane.add(panel);
+		panel.setLayout(null);
 
 		JLabel lblAlarm = new JLabel("Alarm");
+		lblAlarm.setBounds(8, 5, 60, 16);
 		lblAlarm.setLabelFor(panel);
 		lblAlarm.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAlarm.setForeground(SystemColor.menu);
@@ -78,24 +80,29 @@ public class DigitalClockGUI extends JFrame {
 		panel.add(lblAlarm);
 
 		JLabel lblHour = new JLabel("Hour:");
+		lblHour.setBounds(10, 41, 40, 12);
 		lblHour.setFont(new Font("Slim Joe", Font.PLAIN, 12));
 		lblHour.setBackground(SystemColor.menu);
 		panel.add(lblHour);
 
 		textField = new JTextField();
+		textField.setBounds(8, 64, 86, 20);
 		lblHour.setLabelFor(textField);
 		panel.add(textField);
 		textField.setColumns(10);
 
 		JLabel lblNewLabel = new JLabel("Minute");
+		lblNewLabel.setBounds(8, 95, 52, 12);
 		lblNewLabel.setFont(new Font("Slim Joe", Font.PLAIN, 12));
 		panel.add(lblNewLabel);
 
 		textField_1 = new JTextField();
+		textField_1.setBounds(8, 118, 86, 20);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 
 		JButton btnSetAlarm = new JButton("Set Alarm");
+		btnSetAlarm.setBounds(8, 153, 103, 19);
 		btnSetAlarm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -106,6 +113,7 @@ public class DigitalClockGUI extends JFrame {
 		panel.add(btnSetAlarm);
 
 		JButton btnClearAlarm = new JButton("Clear Alarm");
+		btnClearAlarm.setBounds(8, 183, 117, 19);
 		btnClearAlarm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -118,10 +126,25 @@ public class DigitalClockGUI extends JFrame {
 		JLabel lblAlarmAt = new JLabel("Alarm at:");
 		lblAlarmAt.setFont(new Font("Slim Joe", Font.PLAIN, 12));
 		lblAlarmAt.setForeground(SystemColor.inactiveCaptionBorder);
-		lblAlarmAt.setBounds(116, 126, 82, 22);
+		lblAlarmAt.setBounds(151, 125, 82, 22);
 		contentPane.add(lblAlarmAt);
+		
+		lblLblawakelink = new JLabel("lblAwakeLink");
+		lblLblawakelink.setIcon(new ImageIcon(DigitalClockGUI.class.getResource("/Pictures/250px-PegasusBootsTMC.png")));
+		lblLblawakelink.setVisible(false);
+		
+		lblAlarmmsg = new JLabel("Hyaaaah!");
+		lblAlarmmsg.setForeground(Color.WHITE);
+		lblAlarmmsg.setFont(new Font("Sitka Text", Font.PLAIN, 20));
+		lblAlarmmsg.setBounds(294, 205, 117, 32);
+		contentPane.add(lblAlarmmsg);
+		lblAlarmmsg.setVisible(false);
+		lblLblawakelink.setBounds(284, 10, 200, 220);
+		contentPane.add(lblLblawakelink);
+		
 
 		lblSleepyLink = new JLabel("New label");
+		lblSleepyLink.setFont(new Font("Slim Joe", Font.PLAIN, 12));
 		lblSleepyLink.setIcon(new ImageIcon(DigitalClockGUI.class.getResource("/Pictures/27288-the-legend-of-zelda-sleepy-link.png")));
 		lblSleepyLink.setForeground(SystemColor.inactiveCaptionBorder);
 		lblSleepyLink.setBackground(SystemColor.inactiveCaptionBorder);
@@ -129,32 +152,21 @@ public class DigitalClockGUI extends JFrame {
 		contentPane.add(lblSleepyLink);
 
 		lblClocktime = new JLabel("00:00:00");
-		lblClocktime.setBounds(116, 47, 188, 38);
+		lblClocktime.setForeground(Color.WHITE);
+		lblClocktime.setFont(new Font("Slim Joe", Font.PLAIN, 20));
+		lblClocktime.setBounds(151, 72, 123, 38);
 		contentPane.add(lblClocktime);
 		
-		lblAlarn = new JLabel("alarn");
-		lblAlarn.setBounds(208, 129, 46, 14);
+		lblAlarn = new JLabel("");
+		lblAlarn.setForeground(Color.WHITE);
+		lblAlarn.setFont(new Font("Slim Joe", Font.PLAIN, 12));
+		lblAlarn.setBounds(229, 125, 46, 22);
 		contentPane.add(lblAlarn);
-		
-		lblAlarmmsg = new JLabel("alarmMsg");
-		lblAlarmmsg.setBounds(335, 229, 66, 32);
-		contentPane.add(lblAlarmmsg);
 		
 		JLabel background = new JLabel("New label");
 		background.setIcon(new ImageIcon(DigitalClockGUI.class.getResource("/Pictures/1504063.jpg")));
 		background.setBounds(0, 0, 484, 261);
 		contentPane.add(background);
-		
-		lblLblawakelink = new JLabel("lblAwakeLink");
-		lblLblawakelink.setIcon(new ImageIcon(DigitalClockGUI.class.getResource("/Pictures/250px-PegasusBootsTMC.png")));
-		lblLblawakelink.setVisible(false);
-		lblLblawakelink.setBounds(284, 10, 200, 220);
-		contentPane.add(lblLblawakelink);
-		
-		JLabel lblLblalramicon = new JLabel("lblAlramIcon");
-		lblLblalramicon.setIcon(new ImageIcon(DigitalClockGUI.class.getResource("/Pictures/bell69.png")));
-		lblLblalramicon.setBounds(335, 59, 66, 67);
-		contentPane.add(lblLblalramicon);
 	
 		
 		clockLogic = new ClockLogic(this);
@@ -177,11 +189,8 @@ public class DigitalClockGUI extends JFrame {
 		 
 		 lblSleepyLink.setVisible(!activate);
 		 lblLblawakelink.setVisible(activate);
-		 lblLblalramicon.setVisible(activate);
-		if(true){
-			
-			 lblAlarmmsg.setText("Hyaaaah!");
+		 lblAlarmmsg.setVisible(activate);
 			
 		}
-	}
+	
 }

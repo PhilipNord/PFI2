@@ -39,7 +39,7 @@ public class ClockLogic implements ClockInterface {
 
 		alarmHour = 100;
 		alarmMinute = 100;
-
+		clockGUI.setAlarmText(null);
 	}
 
 	@Override
@@ -69,6 +69,8 @@ public class ClockLogic implements ClockInterface {
 		if (this.alarmHour == currHours && this.alarmMinute == currMinutes) {
 			System.out.println("Hejsan hoppsan, nu ringer det!");
 			clockGUI.alarm(true);
+		}else{
+			clockGUI.alarm(false);
 		}
 		
 	}
